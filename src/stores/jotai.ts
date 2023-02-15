@@ -114,6 +114,7 @@ export function useProxyProviders () {
             .map<API.Provider>(name => proxyProviders.data.providers[name])
             .filter(pd => pd.name !== 'default')
             .filter(pd => pd.vehicleType !== 'Compatible')
+            .sort((a, b) => proxyProviders.data.providers.default.proxies.findIndex(x => x.name === a.name) - proxyProviders.data.providers.default.proxies.findIndex(x => x.name === b.name))
     })
 
     useEffect(() => { set(data ?? []) }, [data, set])
